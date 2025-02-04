@@ -96,7 +96,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>SB Admin 2 - Login</title>
+    <title>RUQA - Login</title>
 
     <!-- Custom fonts for this template-->
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -122,7 +122,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     <div class="card-body p-0">
                         <!-- Nested Row within Card Body -->
                         <div class="row">
-                            <div class="col-lg-6 d-none d-lg-block bg-login-image"></div>
+                            <div class="col-lg-6 d-none d-lg-block bg-login-image">
+                                <div style="display: flex; justify-content: center; align-items: center; height: 100%;">
+                                    <img src="DepEd X Logo 512x512.png" alt="RUQA Logo" style="width: 55%; height: 50%;">
+                                </div>
+                            </div>
                             <div class="col-lg-6">
                                 <div class="p-5">
                                     <div class="text-center">
@@ -161,12 +165,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                         <input type="submit" class="btn btn-primary btn-user btn-block" value="Login">
                                         <hr>
                                     </form>
+                                    <div class="text-center">
+                                        <a class="btn btn-secondary btn-user btn-block" href="http://122.3.185.245:8081/ROXRUQA/index.php" target="_blank">Exam Link</a>
+                                    </div>
                                     <hr>
                                     <div class="text-center">
-                                        <a class="small" href="forgot-password.html">Forgot Password?</a>
+                                        <a class="small" href="#">Forgot Password?</a>
                                     </div>
                                     <div class="text-center">
-                                        <a class="small" href="register.html">Create an Account!</a>
+                                        <a class="small" href="#">Create an Account!</a>
                                     </div>
                                 </div>
                             </div>
