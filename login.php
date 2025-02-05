@@ -124,7 +124,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         <div class="row">
                             <div class="col-lg-6 d-none d-lg-block bg-login-image">
                                 <div style="display: flex; justify-content: center; align-items: center; height: 100%;">
-                                    <img src="DepEd X Logo 512x512.png" alt="RUQA Logo" style="width: 55%; height: 50%;">
+                                    <img src="DepEd X Logo 512x512.png" alt="RUQA Logo" style="width: 60%; height: 50%;">
                                 </div>
                             </div>
                             <div class="col-lg-6">

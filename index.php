@@ -108,6 +108,8 @@ $username = $_SESSION['username'];
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="index.php?pg=user">Display Users</a>
+                <li class="nav-item">
+                    <a class="nav-link" href="index.php?pg=search">Search Students</a>
                 <?php endif; ?>
             </li>
             <li class="nav-item">
@@ -414,6 +416,9 @@ $username = $_SESSION['username'];
                                 break;
                             case 'comp':
                                 include 'competency.php';
+                                break;
+                            case 'search':
+                                include 'search.php';
                                 break;
                         }
                     }else{
