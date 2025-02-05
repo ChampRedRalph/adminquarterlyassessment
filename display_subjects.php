@@ -67,12 +67,11 @@ $conn->close();
             <thead>
                 <tr>
                     <th>#</th>
-                    <th>Grade Level</th>
-                    <th>Quarter</th>
-                    <th>Subject</th>
-                    <th>Analysis</th>
-                    <th>File</th>
-                    <th>Actions</th>
+                    <th class="text-center">Grade Level</th>
+                    <th class="text-center">Subject</th>
+                    <th class="text-center">Analysis</th>
+                    <th class="text-center">File</th>
+                    <th class="text-center">Actions</th>
                 </tr>
             </thead>
             <tbody>
@@ -80,17 +79,16 @@ $conn->close();
                     <?php while ($row = $result->fetch_assoc()): ?>
                         <tr>
                             <td><?php echo ++$row_number; ?></td>
-                            <td><?php echo htmlspecialchars($row['gradelevel']); ?></td>
-                            <td><?php echo htmlspecialchars($row['quarter']); ?></td>
+                            <td  class="text-center"><?php echo htmlspecialchars($row['gradelevel']); ?></td>
                             <td><?php echo htmlspecialchars($row['subject']); ?></td>
                             <td>
-                                <a href="<?php echo "http://122.3.185.245:8081/RUQAanalysis/competencyperdivision.php?subject=" 
+                                <!-- <a href="<?php echo "http://122.3.185.245:8081/RUQAanalysis/competencyperdivision.php?subject=" 
                                         . urlencode($row["file"]) 
                                         . "&division=" 
                                         . urlencode($_SESSION["office"]); ?>" 
                                     target="_blank" class="btn btn-info btn-sm">
                                     Analysis
-                                </a>
+                                </a> -->
                             </td>
                             <td>
                                 <?php if ($row['file']): ?>

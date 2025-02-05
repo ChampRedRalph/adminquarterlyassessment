@@ -381,7 +381,7 @@ $username = $_SESSION['username'];
 
                 <!-- Begin Page Content -->
                 
-<main class="col-md-9 ml-sm-auto col-lg-10 px-md-4">
+<main class="col-md-9 ml-sm-5 col-lg-12 px-md-4">
                 <div id="contentArea" class="mt-3">
                     <!-- Content will be loaded here -->
                     <?php
@@ -432,7 +432,7 @@ $username = $_SESSION['username'];
             <!-- End of Main Content -->
 
             <!-- Footer -->
-            <footer class="sticky-footer bg-white">
+            <footer class="sticky-footer bg-white mt-auto">
                 <div class="container my-auto">
                     <div class="copyright text-center my-auto">
                         <span>Copyright &copy; Your Website 2021</span>
