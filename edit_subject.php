@@ -111,6 +111,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             <input type="file" class="form-control-file" id="file" name="file">
             </div>
             <button type="submit" class="btn btn-primary">Update</button>
+            <a href="index.php?pg=subj" class="btn btn-secondary ml-2">Cancel</a>
         </form>
     </div>
 </body>

@@ -124,7 +124,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         <div class="row">
                             <div class="col-lg-6 d-none d-lg-block bg-login-image">
                                 <div style="display: flex; justify-content: center; align-items: center; height: 100%;">
-                                    <img src="DepEd X Logo 512x512.png" alt="RUQA Logo" style="width: 60%; height: 50%;">
+                                    <img src="DepEd X Logo 512x512.png" alt="RUQA Logo" style="width: 70%; height: 50%;">
                                 </div>
                             </div>
                             <div class="col-lg-6">
@@ -167,6 +167,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                     </form>
                                     <div class="text-center">
                                         <a class="btn btn-secondary btn-user btn-block" href="http://122.3.185.245:8081/ROXRUQA/index.php" target="_blank">Exam Link</a>
+                                    </div>
+                                    <br>
+                                    <div class="text-center">
+                                        <a class="btn btn-info btn-user btn-block" href="public_search.php" target="_blank">Search Student</a>
                                     </div>
                                     <hr>
                                     <div class="text-center">

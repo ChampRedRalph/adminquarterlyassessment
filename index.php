@@ -7,6 +7,7 @@ $username = $_SESSION['username'];
 
 ?>
 
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -51,7 +52,7 @@ $username = $_SESSION['username'];
             <hr class="sidebar-divider my-0">
 
             <!-- Nav Item - Dashboard -->
-            <li class="nav-item active">
+            <li class="nav-item">
                 <a class="nav-link" href="index.php">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Dashboard</span></a>
@@ -100,8 +101,6 @@ $username = $_SESSION['username'];
                 </div>
             </li> -->
 
-
-
             <li class="nav-item">
                 <?php if ($_SESSION["office"] === "Region"): ?>
                     <a class="nav-link active" href="index.php?pg=sch">Display Schools</a>
@@ -119,7 +118,6 @@ $username = $_SESSION['username'];
                 <a class="nav-link" href="index.php?pg=comp">Display Competences</a>
             </li>
 
-
             <!-- Divider -->
             <!-- <hr class="sidebar-divider"> -->
 
@@ -129,13 +127,14 @@ $username = $_SESSION['username'];
             </div> -->
 
             <!-- Nav Item - Pages Collapse Menu -->
-            <!-- <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages"
-                    aria-expanded="true" aria-controls="collapsePages">
+            <!-- <li class="nav-item active">
+                <a class="nav-link" href="#" data-toggle="collapse" data-target="#collapsePages" aria-expanded="true"
+                    aria-controls="collapsePages">
                     <i class="fas fa-fw fa-folder"></i>
                     <span>Pages</span>
                 </a>
-                <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+                <div id="collapsePages" class="collapse show" aria-labelledby="headingPages"
+                    data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Login Screens:</h6>
                         <a class="collapse-item" href="login.html">Login</a>
@@ -144,7 +143,7 @@ $username = $_SESSION['username'];
                         <div class="collapse-divider"></div>
                         <h6 class="collapse-header">Other Pages:</h6>
                         <a class="collapse-item" href="404.html">404 Page</a>
-                        <a class="collapse-item" href="blank.html">Blank Page</a>
+                        <a class="collapse-item active" href="blank.html">Blank Page</a>
                     </div>
                 </div>
             </li> -->
@@ -195,7 +194,19 @@ $username = $_SESSION['username'];
                         <i class="fa fa-bars"></i>
                     </button>
 
-                    
+                    <!-- Topbar Search -->
+                    <form
+                        class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+                        <div class="input-group">
+                            <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..."
+                                aria-label="Search" aria-describedby="basic-addon2">
+                            <div class="input-group-append">
+                                <button class="btn btn-primary" type="button">
+                                    <i class="fas fa-search fa-sm"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </form>
 
                     <!-- Topbar Navbar -->
                     <ul class="navbar-nav ml-auto">
@@ -354,7 +365,7 @@ $username = $_SESSION['username'];
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
                                 aria-labelledby="userDropdown">
-                                <a class="dropdown-item" href="#">
+                                <!-- <a class="dropdown-item" href="#">
                                     <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Profile
                                 </a>
@@ -365,9 +376,9 @@ $username = $_SESSION['username'];
                                 <a class="dropdown-item" href="#">
                                     <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Activity Log
-                                </a>
+                                </a> -->
                                 <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="logout.php" data-toggle="modal" data-target="#logoutModal">
+                                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
                                     <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Logout
                                 </a>
@@ -380,62 +391,67 @@ $username = $_SESSION['username'];
                 <!-- End of Topbar -->
 
                 <!-- Begin Page Content -->
-                
-<main class="col-md-9 ml-sm-5 col-lg-12 px-md-4">
-                <div id="contentArea" class="mt-3">
-                    <!-- Content will be loaded here -->
-                    <?php
-                    if(isset($_GET['pg'])){
-                        switch($_GET['pg']){
-                            case 'sch':
-                                include 'display_school.php';
-                                break;
-                            case 'subj':
-                                include 'display_subjects.php';
-                                break;
-                            case 'schadd':
-                                include 'add_school.php';
-                                break;
-                            case 'subjadd':
-                                include 'addsubjectform.php';
-                                break;
-                            case 'user':
-                                include 'display_users.php';
-                                break; 
-                            case 'useradd':
-                                include 'add_users.php';
-                                break; 
-                            case 'subjedit':
-                                include 'edit_subject.php';
-                                break; 
-                            case 'schooledit':
-                                include 'edit_school.php';
-                                break; 
-                            case 'useredit':
-                                include 'edit_user.php';
-                                break;
-                            case 'comp':
-                                include 'competency.php';
-                                break;
-                            case 'search':
-                                include 'search.php';
-                                break;
-                        }
-                    }else{
-                        echo "<h1>Welcome</h1>";
+                <div class="container-fluid">
+                <main class="col-md-9 ml-sm-5 col-lg-12 px-md-4">
+                        <div id="contentArea" class="mt-3">
+                            <!-- Content will be loaded here -->
+                            <?php
+                            if(isset($_GET['pg'])){
+                                switch($_GET['pg']){
+                                    case 'sch':
+                                        include 'display_school.php';
+                                        break;
+                                    case 'subj':
+                                        include 'display_subjects.php';
+                                        break;
+                                    case 'schadd':
+                                        include 'add_school.php';
+                                        break;
+                                    case 'subjadd':
+                                        include 'addsubjectform.php';
+                                        break;
+                                    case 'user':
+                                        include 'display_users.php';
+                                        break; 
+                                    case 'useradd':
+                                        include 'add_users.php';
+                                        break; 
+                                    case 'subjedit':
+                                        include 'edit_subject.php';
+                                        break; 
+                                    case 'schooledit':
+                                        include 'edit_school.php';
+                                        break; 
+                                    case 'useredit':
+                                        include 'edit_user.php';
+                                        break;
+                                    case 'comp':
+                                        include 'competency.php';
+                                        break;
+                                    case 'search':
+                                        include 'search.php';
+                                        break;
+                                }
+                            }else{
+                                echo "<h1>Welcome</h1>";
 
-                    }
-                    ?>
+                            }
+                            ?>
+                        </div>
+                    </main>
+
+
                 </div>
-            </main>
+                <!-- /.container-fluid -->
 
+            </div>
             <!-- End of Main Content -->
 
             <!-- Footer -->
-            <footer class="sticky-footer bg-white mt-auto">
+            <footer class="sticky-footer bg-white">
                 <div class="container my-auto">
                     <div class="copyright text-center my-auto">
-                        <span>Copyright &copy; Your Website 2021</span>
+                        <span>Copyright &copy; RUQA 2025</span>
                     </div>
                 </div>
             </footer>
@@ -481,15 +497,6 @@ $username = $_SESSION['username'];
 
     <!-- Custom scripts for all pages-->
     <script src="js/sb-admin-2.min.js"></script>
-
-    <!-- Page level plugins -->
-    <script src="vendor/chart.js/Chart.min.js"></script>
-
-    <!-- Page level custom scripts -->
-    <script src="js/demo/chart-area-demo.js"></script>
-    <script src="js/demo/chart-pie-demo.js"></script>
-
-   
 
 </body>
 

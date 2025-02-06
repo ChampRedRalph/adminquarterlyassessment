@@ -6,9 +6,9 @@ include 'roxcon.php';
 
 if(isset($_GET['s'])){
     $search = preg_replace('/[^a-zA-Z0-9\s.,]/', '', $_GET['s']);
-    $query = "SELECT ID,schoolid, studname,a51, gradelevel, `subject`  FROM tb_answers  where schoolid!= 101010 and (`schoolid` like '%$search%' or `studname` like '%$search%') limit 20";
+    $query = "SELECT ID,schoolid, studname,a51, gradelevel, `subject`, created_at  FROM tb_answers  where schoolid!= 101010 and (`schoolid` like '%$search%' or `studname` like '%$search%') limit 20";
 }else{
-    $query = "SELECT ID,schoolid, studname,a51,gradelevel, `subject` FROM tb_answers where schoolid != 101010 order by `ID` desc limit 20";
+    $query = "SELECT ID,schoolid, studname,a51,gradelevel, `subject`, created_at  FROM tb_answers WHERE 1=0";
 }
 $result = $conn->query($query);
 
@@ -54,7 +54,7 @@ if (!$result) {
                             </div>
                         </div>
                     </form>
-        Student Scores</h2>
+                    Display Examinees</h2>
         <table class="table table-striped table-bordered">
             <thead>
                 <tr>
@@ -81,7 +81,7 @@ if (!$result) {
                     <?php endwhile; ?>
                 <?php else: ?>
                     <tr>
-                        <td colspan="5" class="text-center">No records found</td>
+                        <td colspan="6" class="text-center">No records found</td>
                     </tr>
                 <?php endif; ?>
             </tbody>
