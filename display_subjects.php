@@ -5,10 +5,10 @@ include 'roxcon.php';
 // Fetch data from the subjects table
 if (isset($_GET['s'])) {
     $subjectarea = $conn->real_escape_string($_SESSION["subjectarea"]); // Sanitize session input
-    $query = "SELECT * FROM subjects WHERE `subject` LIKE '%$subjectarea%' ORDER BY quarter DESC, gradelevel ASC";
+    $query = "SELECT * FROM subjects WHERE `subject` LIKE '%$subjectarea%' ORDER BY `file` ASC, gradelevel ASC";
 } else {
     $subjectarea = $conn->real_escape_string($_SESSION["subjectarea"]); // Sanitize session input
-    $query = "SELECT * FROM subjects WHERE `subject` LIKE '%$subjectarea%' ORDER BY quarter DESC, gradelevel ASC";
+    $query = "SELECT * FROM subjects WHERE `subject` LIKE '%$subjectarea%' ORDER BY `file` ASC, gradelevel ASC";
 }
 $result = $conn->query($query);
 
@@ -43,7 +43,8 @@ $conn->close();
         <h2 class="mb-4">
             
         <!-- Topbar Search -->
-<form method="get" action="index.php"
+
+<!-- <form method="get" action="index.php"
                         class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
                         <div class="input-group">
                             <input type="hidden" name="pg" value="subj" >
@@ -56,8 +57,7 @@ $conn->close();
                                 </button>
                             </div>
                         </div>
-                    </form>
-        
+                    </form> -->
         
                     <?php if (isset($_SESSION["office"]) && $_SESSION["office"] === "Region"): ?>
                      <a href="index.php?pg=subjadd" class="btn btn-primary btn-sm">Add</a>
