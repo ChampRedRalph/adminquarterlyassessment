@@ -53,7 +53,7 @@ $username = $_SESSION['username'];
 
             <!-- Nav Item - Dashboard -->
             <li class="nav-item">
-                <a class="nav-link" href="index.php">
+                <a class="nav-link" href="index.php?pg=default">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Dashboard</span></a>
             </li>
@@ -102,21 +102,22 @@ $username = $_SESSION['username'];
             </li> -->
 
             <li class="nav-item">
-                <?php if ($_SESSION["office"] === "Region"): ?>
+                <?php if ($_SESSION["office"] === "Region" && $_SESSION["subjectarea"] === null): ?>
                     <a class="nav-link active" href="index.php?pg=sch">Display Schools</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="index.php?pg=user">Display Users</a>
-                <li class="nav-item">
-                    <a class="nav-link" href="index.php?pg=search">Search Students</a>
                 <?php endif; ?>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="index.php?pg=subj">Display Subjects</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="index.php?pg=comp">Display Competences</a>
-            </li>
+
+                <li class="nav-item">
+                <a class="nav-link" href="index.php?pg=search">Search Students</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="index.php?pg=subj">Display Subjects</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="index.php?pg=comp">Display Competences</a>
+                </li>
 
             <!-- Divider -->
             <!-- <hr class="sidebar-divider"> -->
@@ -431,9 +432,12 @@ $username = $_SESSION['username'];
                                     case 'search':
                                         include 'search.php';
                                         break;
+                                    default:
+                                        include 'dashboard.php';
+                                        break;
                                 }
                             }else{
-                                echo "<h1>Welcome</h1>";
+                                include 'dashboard.php';
 
                             }
                             ?>

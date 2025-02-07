@@ -64,6 +64,7 @@ if (!$result) {
                     <th>SCORE</th>
                     <th>Grade Level</th>
                     <th>Subject Taken</th>
+                    <th>Submitted</th>
                 </tr>
             </thead>
             <tbody>
@@ -150,7 +151,7 @@ if (!$result) {
                     <?php endwhile; ?>
                 <?php else: ?>
                     <tr>
-                        <td colspan="5" class="text-center">No records found</td>
+                        <td colspan="6" class="text-center">No records found</td>
                     </tr>
                 <?php endif; ?>
             </tbody>

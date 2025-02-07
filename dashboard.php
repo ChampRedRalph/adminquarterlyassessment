@@ -1,0 +1,154 @@
+
+<?php
+// Include the database connection file
+include 'roxcon.php'; // Change this to the correct path of your connection file
+
+// Query to count the number of rows in the "answers" table
+$sql = "SELECT COUNT(*) as total_answers FROM tb_answers";
+$result = $conn->query($sql);
+
+if ($result->num_rows > 0) {
+    // Fetch the row
+    $row = $result->fetch_assoc();
+    $total_answers = $row["total_answers"];
+} else {
+    $total_answers = 0;
+}
+
+// Query to count the number of rows in the "subjects" table where the "file" field is not null
+$sql_subjects = "SELECT COUNT(*) as total_subjects FROM subjects WHERE file IS NOT NULL";
+$result_subjects = $conn->query($sql_subjects);
+
+if ($result_subjects->num_rows > 0) {
+    // Fetch the row
+    $row_subjects = $result_subjects->fetch_assoc();
+    $total_subjects = $row_subjects["total_subjects"];
+} else {
+    $total_subjects = 0;
+}
+
+// Query to count the number of rows in the "subjects" table where the "file" field is null
+$sql_subjects_null = "SELECT COUNT(*) as total_subjects_null FROM subjects WHERE file IS NULL";
+$result_subjects_null = $conn->query($sql_subjects_null);
+
+if ($result_subjects_null->num_rows > 0) {
+    // Fetch the row
+    $row_subjects_null = $result_subjects_null->fetch_assoc();
+    $total_subjects_null = $row_subjects_null["total_subjects_null"];
+} else {
+    $total_subjects_null = 0;
+}
+
+// Query to count the number of unique schoolid in the "tb_answers" table
+$sql_unique_schools = "SELECT COUNT(DISTINCT schoolid) as total_unique_schools FROM tb_answers";
+$result_unique_schools = $conn->query($sql_unique_schools);
+
+if ($result_unique_schools->num_rows > 0) {
+    // Fetch the row
+    $row_unique_schools = $result_unique_schools->fetch_assoc();
+    $total_unique_schools = $row_unique_schools["total_unique_schools"];
+} else {
+    $total_unique_schools = 0;
+}
+
+?>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashbard</title>
+    <!-- Bootstrap CSS -->
+</head>
+<body>
+    <div class="container mt-5">
+    <div class="row">
+
+                <!-- Earnings (Monthly) Card Example -->
+                <div class="col-xl-3 col-md-6 mb-4">
+                    <div class="card border-left-primary shadow h-100 py-2">
+                        <div class="card-body">
+                            <div class="row no-gutters align-items-center">
+                                <div class="col mr-2">
+                                    <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                                        Total Answers</div>
+                                    <div class="h5 mb-0 font-weight-bold text-gray-800"><?php echo $total_answers; ?></div>
+                                </div>
+                                <div class="col-auto">
+                                    <i class="fas fa-file-alt fa-2x text-gray-300"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Earnings (Annual) Card Example -->
+                <div class="col-xl-3 col-md-6 mb-4">
+                    <div class="card border-left-success shadow h-100 py-2">
+                        <div class="card-body">
+                            <div class="row no-gutters align-items-center">
+                                <div class="col mr-2">
+                                    <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                                        Total Subjects with Questionaire</div>
+                                    <div class="h5 mb-0 font-weight-bold text-gray-800"><?php echo $total_subjects; ?></div>
+                                </div>
+                                <div class="col-auto">
+                                    <i class="fas fa-clipboard-list fa-2x text-gray-300"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tasks Card Example -->
+                <div class="col-xl-3 col-md-6 mb-4">
+                    <div class="card border-left-info shadow h-100 py-2">
+                        <div class="card-body">
+                            <div class="row no-gutters align-items-center">
+                                <div class="col mr-2">
+                                    <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Total Subjects with No Questionaire
+                                    </div>
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col-auto">
+                                            <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800"><?php echo $total_subjects_null; ?></div>
+                                        </div>
+                                        
+                                    </div>
+                                </div>
+                                <div class="col-auto">
+                                    <i class="fas fa-clipboard-list fa-2x text-gray-300"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Pending Requests Card Example -->
+                <div class="col-xl-3 col-md-6 mb-4">
+                    <div class="card border-left-warning shadow h-100 py-2">
+                        <div class="card-body">
+                            <div class="row no-gutters align-items-center">
+                                <div class="col mr-2">
+                                    <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
+                                        Total Schools Answered</div>
+                                    <div class="h5 mb-0 font-weight-bold text-gray-800"><?php echo $total_unique_schools; ?></div>
+                                </div>
+                                <div class="col-auto">
+                                    <i class="fas fa-school fa-2x text-gray-300"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+    </div>
+    </div>
+
+
+</body>
+</html>
+
+<?php
+// Close the database connection
+$conn->close();
+?>
