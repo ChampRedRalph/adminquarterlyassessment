@@ -1,4 +1,3 @@
-
 <?php
 // Include the database connection file
 include 'roxcon.php'; // Change this to the correct path of your connection file
@@ -148,7 +147,7 @@ if ($result_unique_schools->num_rows > 0) {
                 </div>
                 <div class="row">
                     <!-- Profile Card -->
-                    <div class="col-xl-4 col-md-6 mb-4">
+                    <div class="col-xl-6 col-md-6 mb-4">
                         <div class="card border-left-info shadow h-100 py-2">
                             <div class="card-body">
                                 <div class="row no-gutters align-items-center">
@@ -156,8 +155,8 @@ if ($result_unique_schools->num_rows > 0) {
                                         <div class="text-xs font-weight-bold text-info text-uppercase mb-1">
                                             Profile</div>
                                         <div class="h5 mb-0 font-weight-bold text-gray-800"><?php echo $username; ?></div>
-                                        <div class="text-xs font-weight-bold text-gray-800"><?php echo $subjectarea; ?></div>
-                                        <div class="text-xs font-weight-bold text-gray-800"><?php echo $office; ?></div>
+                                        <div class="text-xs font-weight-bold text-gray-800"><?php echo $_SESSION["subjectarea"]; ?></div>
+                                        <div class="text-xs font-weight-bold text-gray-800"><?php echo $_SESSION["office"]; ?></div>
                                     </div>
                                     <div class="col-auto">
                                         <i class="fas fa-user fa-2x text-gray-300"></i>
