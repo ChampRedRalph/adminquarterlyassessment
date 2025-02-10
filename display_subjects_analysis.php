@@ -5,10 +5,10 @@ include 'roxcon.php';
 // Fetch data from the subjects table
 if (isset($_GET['s'])) {
     $subjectarea = $conn->real_escape_string($_SESSION["subjectarea"]); // Sanitize session input
-    $query = "SELECT * FROM subjects WHERE `subject` LIKE '%$subjectarea%' AND `quarter` = 3 ORDER BY `file` ASC, gradelevel ASC";
+    $query = "SELECT * FROM subjects WHERE `subject` LIKE '%$subjectarea%' AND `quarter` = 2 ORDER BY `file` ASC, gradelevel ASC";
 } else {
     $subjectarea = $conn->real_escape_string($_SESSION["subjectarea"]); // Sanitize session input
-    $query = "SELECT * FROM subjects WHERE `subject` LIKE '%$subjectarea%' AND `quarter` = 3  ORDER BY `file` ASC, gradelevel ASC";
+    $query = "SELECT * FROM subjects WHERE `subject` LIKE '%$subjectarea%' AND `quarter` = 2  ORDER BY `file` ASC, gradelevel ASC";
 }
 $result = $conn->query($query);
 
@@ -59,7 +59,6 @@ $conn->close();
                     </form> -->
         
                     <?php if (isset($_SESSION["office"]) && $_SESSION["office"] === "Region"): ?>
-                     <a href="index.php?pg=subjadd" class="btn btn-primary btn-sm">Add</a>
                     <?php endif; ?>
         Subjects</h2>
         <table class="table table-striped table-bordered">
@@ -69,8 +68,6 @@ $conn->close();
                     <th class="text-center">Grade Level</th>
                     <th class="text-center">Subject</th>
                     <th class="text-center">Analysis</th>
-                    <th class="text-center">File</th>
-                    <th class="text-center">Actions</th>
                 </tr>
             </thead>
             <tbody>
@@ -81,34 +78,19 @@ $conn->close();
                             <td  class="text-center"><?php echo htmlspecialchars($row['gradelevel']); ?></td>
                             <td><?php echo htmlspecialchars($row['subject']); ?></td>
                             <td>
-                                <!-- <a href="<?php echo "http://122.3.185.245:8081/RUQAanalysis/competencyperdivision.php?subject=" 
+                                 <a href="<?php echo "http://122.3.185.245:8081/RUQAanalysis/competencyperdivision.php?subject=" 
                                         . urlencode($row["file"]) 
                                         . "&division=" 
                                         . urlencode($_SESSION["office"]); ?>" 
                                     target="_blank" class="btn btn-info btn-sm">
                                     Analysis
-                                </a> -->
-                            </td>
-                            <td>
-                                <?php if ($row['file']): ?>
-                                    <a href="<?php echo "questionaire/".htmlspecialchars($row['file']); ?>" target="_blank" class="btn btn-success btn-sm">View File</a>
-                                <?php else: ?>
-                                    <strong style="color: red;">
-                                        <i class="fas fa-exclamation-triangle"></i> No File
-                                    </strong>
-                                <?php endif; ?>
-                            </td>
-                            <td>
-                            <?php if (isset($_SESSION["office"]) && $_SESSION["office"] === "Region"): ?>
-                                <a href="index.php?pg=subjedit&&id=<?php echo htmlspecialchars($row['id']); ?>" class="btn btn-warning btn-sm">Edit</a>
-                                 <a href="delete_subject.php?id=<?php echo htmlspecialchars($row['id']); ?>" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to delete this item?');">Delete</a>
-                            <?php endif; ?>
+                                </a>
                             </td>
                         </tr>
                     <?php endwhile; ?>
                 <?php else: ?>
                     <tr>
-                        <td colspan="5" class="text-center">No records found</td>
+                        <td colspan="4" class="text-center">No records found</td>
                     </tr>
                 <?php endif; ?>
             </tbody>
