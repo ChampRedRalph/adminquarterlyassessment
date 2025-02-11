@@ -8,7 +8,8 @@ if (isset($_GET['s'])) {
     $query = "SELECT * FROM subjects WHERE `subject` LIKE '%$subjectarea%' AND `quarter` = 2 ORDER BY `file` ASC, gradelevel ASC";
 } else {
     $subjectarea = $conn->real_escape_string($_SESSION["subjectarea"]); // Sanitize session input
-    $query = "SELECT * FROM subjects WHERE `subject` LIKE '%$subjectarea%' AND `quarter` = 2  ORDER BY `file` ASC, gradelevel ASC";
+    // $query = "SELECT * FROM tbn WHERE `subject` LIKE '%$subjectarea%' AND `quarter` = 2  ORDER BY `file` ASC, gradelevel ASC";
+    $query = "SELECT DISTINCT (SUBJECT) FROM `tb_analysis` WHERE `subject` LIKE '%$subjectarea%' ORDER BY SUBJECT ASC"; 
 }
 $result = $conn->query($query);
 
@@ -76,10 +77,12 @@ $conn->close();
                         <tr>
                             <td><?php echo ++$row_number; ?></td>
                             <td  class="text-center"><?php echo htmlspecialchars($row['gradelevel']); ?></td>
-                            <td><?php echo htmlspecialchars($row['subject']); ?></td>
+                            <td><?php 
+                            $newString = substr($row['SUBJECT'], 0, -4);
+                            echo htmlspecialchars($newString); ?></td>
                             <td>
-                                 <a href="<?php echo "http://122.3.185.245:8081/RUQAanalysis/competencyperdivision.php?subject=" 
-                                        . urlencode($row["file"]) 
+                                 <a href="<?php echo "/RUQAanalysis/competencyperdivisionv2.php?subject=" 
+                                        . urlencode($row["SUBJECT"]) 
                                         . "&division=" 
                                         . urlencode($_SESSION["office"]); ?>" 
                                     target="_blank" class="btn btn-info btn-sm">
