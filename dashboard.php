@@ -157,6 +157,7 @@ if ($result_unique_schools->num_rows > 0) {
                                         <div class="h5 mb-0 font-weight-bold text-gray-800"><?php echo $username; ?></div>
                                         <div class="text-xs font-weight-bold text-gray-800"><?php echo $_SESSION["subjectarea"]; ?></div>
                                         <div class="text-xs font-weight-bold text-gray-800"><?php echo $_SESSION["office"]; ?></div>
+                                        <div class="text-xs font-weight-bold text-gray-800"><?php echo $_SESSION["schoolid"]; ?></div>
                                     </div>
                                     <div class="col-auto">
                                         <i class="fas fa-user fa-2x text-gray-300"></i>

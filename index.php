@@ -102,21 +102,26 @@ $username = $_SESSION['username'];
             </li> -->
 
             <li class="nav-item">
-                <?php if ($_SESSION["office"] === "Region" && $_SESSION["subjectarea"] === null): ?>
-                    <a class="nav-link active" href="index.php?pg=sch">Display Schools</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="index.php?pg=user">Display Users</a>
-                <?php endif; ?>
+                <?php if (empty($_SESSION["schoolid"])): ?>
+                    <?php if ($_SESSION["office"] === "Region" && empty($_SESSION["subjectarea"])): ?>
+                        <a class="nav-link active" href="index.php?pg=sch">Display Schools</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.php?pg=user">Display Users</a>
+                    <?php endif; ?>
 
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.php?pg=subj">Display Subjects</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.php?pg=comp">Display Competences</a>
+                    </li>
+                <?php endif; ?>
+                <li class="nav-item">
+                        <a class="nav-link" href="index.php?pg=anal">Display 2nd Qtr Analysis</a>
+                    </li>
                 <li class="nav-item">
                 <a class="nav-link" href="index.php?pg=search">Search Students</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="index.php?pg=subj">Display Subjects</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="index.php?pg=comp">Display Competences</a>
                 </li>
 
             <!-- Divider -->
@@ -431,6 +436,9 @@ $username = $_SESSION['username'];
                                         break;
                                     case 'search':
                                         include 'search.php';
+                                        break;
+                                    case 'anal':
+                                        include 'display_subjects_analysis.php';
                                         break;
                                     default:
                                         include 'dashboard.php';

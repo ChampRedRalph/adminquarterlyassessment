@@ -29,7 +29,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Validate credentials
     if (empty($username_err) && empty($password_err)) {
         // Prepare a select statement to fetch user data
-        $sql = "SELECT id, username, password, subjectarea, office FROM users WHERE username = ?";
+        $sql = "SELECT id, username, password, subjectarea, office, schoolid FROM users WHERE username = ?";
         
         if ($stmt = $conn->prepare($sql)) {
             // Bind variables to the prepared statement
@@ -44,7 +44,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 // Check if the username exists, if yes, then verify the password
                 if ($stmt->num_rows == 1) {
                     // Bind the result variables
-                    $stmt->bind_result($id, $username, $hashed_password,$subjectarea,$office);
+                    $stmt->bind_result($id, $username, $hashed_password,$subjectarea,$office,$schoolid);
                     
                     if ($stmt->fetch()) {
                         // Verify the hashed password
@@ -58,6 +58,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                             $_SESSION["username"] = $username;
                             $_SESSION["subjectarea"] = $subjectarea;
                             $_SESSION["office"] = $office;
+                            $_SESSION["schoolid"] = $schoolid;
+
 
                             
                             // Redirect user to the dashboard or home page
