@@ -102,6 +102,11 @@ $conn->close();
                             <?php if (isset($_SESSION["office"]) && $_SESSION["office"] === "Region"): ?>
                                 <a href="index.php?pg=subjedit&&id=<?php echo htmlspecialchars($row['id']); ?>" class="btn btn-warning btn-sm">Edit</a>
                                  <a href="delete_subject.php?id=<?php echo htmlspecialchars($row['id']); ?>" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to delete this item?');">Delete</a>
+                                 <a href="<?php echo "http://122.3.185.245:8081/RUQACompetencies/index.php?grade=" 
+                                        . urlencode($row['gradelevel']); ?>" 
+                                    target="_blank" class="btn btn-info btn-sm">
+                                    Submit Competencies
+                                </a>
                             <?php endif; ?>
                             </td>
                         </tr>
