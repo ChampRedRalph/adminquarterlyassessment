@@ -168,7 +168,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                         <hr>
                                     </form>
                                     <div class="text-center">
-                                        <a class="btn btn-secondary btn-user btn-block" href="http://122.3.185.245:8081/ROXRUQA/index.php" target="_blank">Exam Link</a>
+                                        <a class="btn btn-secondary btn-user btn-block" href="http://ruqa.deped10.com" target="_blank">RUQA Exam Link</a>
+                                    </div>
+                                    <br>
+                                    <div class="text-center">
+                                        <a class="btn btn-secondary btn-user btn-block" href="http://cbrat.deped10.com" target="_blank">CBRAT Exam Link</a>
                                     </div>
                                     <br>
                                     <div class="text-center">
