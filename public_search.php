@@ -6,9 +6,11 @@ include 'roxcon.php';
 
 if(isset($_GET['s'])){
     $search = preg_replace('/[^a-zA-Z0-9\s.,]/', '', $_GET['s']);
-    $query = "SELECT ID,schoolid, studname,a51, gradelevel, `subject`, created_at  FROM tb_answers  where schoolid!= 101010 and (`schoolid` like '%$search%' or `studname` like '%$search%') limit 20";
+    // $query = "SELECT ID,schoolid, studname,a51, gradelevel, `subject`, created_at  FROM tb_answers  where schoolid!= 101010 and (`schoolid` like '%$search%' or `studname` like '%$search%') limit 20";
+    $query = "SELECT ID,schoolid, studname,a51, gradelevel, `subject`, created_at  FROM tb_answers_cbrat  where schoolid!= 101010 and (`schoolid` like '%$search%' or `studname` like '%$search%') limit 20";
 }else{
-    $query = "SELECT ID,schoolid, studname,a51,gradelevel, `subject`, created_at  FROM tb_answers WHERE 1=0";
+    // $query = "SELECT ID,schoolid, studname,a51,gradelevel, `subject`, created_at  FROM tb_answers WHERE 1=0";
+    $query = "SELECT ID,schoolid, studname,a51,gradelevel, `subject`, created_at  FROM tb_answers_cbrat WHERE 1=0";
 }
 $result = $conn->query($query);
 
@@ -62,7 +64,8 @@ if (!$result) {
                     <th>School ID</th>
                     <th>Student Name</th>
                     <th>Grade Level</th>
-                    <th>Subject Taken</th>
+                    <th>Subject Taken</th>                   
+                    <th>Submitted</th>
                 </tr>
             </thead>
             <tbody>
@@ -76,6 +79,7 @@ if (!$result) {
                             <td><?php echo htmlspecialchars($row['studname']); ?></td>
                             <td><?php echo htmlspecialchars($row['gradelevel']); ?></td>
                             <td><?php echo htmlspecialchars($row['subject']);?></td>
+                            <td><?php echo htmlspecialchars($row['created_at']);?></td>
                         </tr>
                         <?php $i++; // Increment $i for each row ?>
                     <?php endwhile; ?>
