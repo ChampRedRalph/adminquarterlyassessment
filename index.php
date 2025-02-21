@@ -440,6 +440,12 @@ $username = $_SESSION['username'];
                                     case 'anal':
                                         include 'display_subjects_analysis.php';
                                         break;
+                                    case 'subans':
+                                        include 'submit_answers.php';
+                                        break;
+                                    case 'subcomp':
+                                        include 'submit_competency.php';
+                                        break;
                                     default:
                                         include 'dashboard.php';
                                         break;

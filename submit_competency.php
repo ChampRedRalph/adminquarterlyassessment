@@ -11,7 +11,7 @@ session_start();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Submit Answers</title>
+    <title>Submit Competency</title>
     <!-- Bootstrap CSS -->
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
 </head>
@@ -19,8 +19,8 @@ session_start();
     <div class="container mt-5">
         <div class="row">
             <div class="col-md-12">
-                <h2 class="mb-4">Submit Answers</h2>
-                <form action="process_answers.php" method="post">
+                <h2 class="mb-4">Submit Competency</h2>
+                <form action="process_competency.php" method="post">
                     <div class="form-group">
                         <label for="gradelevel">Grade Level</label>
                         <input type="text" class="form-control" id="gradelevel" name="gradelevel" value="<?php echo htmlspecialchars($_GET['grade']); ?>" readonly>
@@ -31,14 +31,8 @@ session_start();
                     </div>
                     <?php for ($i = 1; $i <= 50; $i++): ?>
                         <div class="form-group">
-                            <label for="a<?php echo $i; ?>">Item <?php echo $i; ?></label>
-                            <select class="form-control" id="a<?php echo $i; ?>" name="a<?php echo $i; ?>" >
-                                <option value="">Select an option</option>
-                                <option value="a">A</option>
-                                <option value="b">B</option>
-                                <option value="c">C</option>
-                                <option value="d">D</option>
-                            </select>
+                            <label for="c<?php echo $i; ?>">Item <?php echo $i; ?></label>
+                            <input type="text" class="form-control" id="c<?php echo $i; ?>" name="c<?php echo $i; ?>">
                         </div>
                     <?php endfor; ?>
                     <button type="submit" class="btn btn-primary">Submit</button>
