@@ -120,9 +120,11 @@ $username = $_SESSION['username'];
                 <li class="nav-item">
                         <a class="nav-link" href="index.php?pg=anal">Display 2nd Qtr Analysis</a>
                     </li>
-                <li class="nav-item">
-                <a class="nav-link" href="index.php?pg=search">Search Students</a>
-                </li>
+                <?php if (!empty($_SESSION["schoolid"])): ?>
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.php?pg=search">Search Students</a>
+                    </li>
+                <?php endif; ?>
 
             <!-- Divider -->
             <!-- <hr class="sidebar-divider"> -->

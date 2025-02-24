@@ -2,33 +2,25 @@
 // Include the database connection file
 include 'roxcon.php'; // Change this to the correct path of your connection file
 
+// Initialize the session
+session_start();
+
 // Fetch data from the tb_answers table
 $schoolid = isset($_SESSION["schoolid"]) ? $_SESSION["schoolid"] : '';
 
-if (isset($_GET['s'])) {
-    $search = preg_replace('/[^a-zA-Z0-9\s.,]/', '', $_GET['s']);
-    if (!empty($schoolid)) {
-        $query = "SELECT schoolid, studname, gradelevel, `subject`, a51 
-                  FROM tb_answers 
-                  WHERE schoolid != 101010 AND schoolid = '$schoolid'
-                  ORDER BY studname DESC";
-    } else {
-        $query = "SELECT schoolid, studname, gradelevel, `subject`, a51 
-                  FROM tb_answers 
-                  WHERE schoolid != 101010 AND schoolid = '$schoolid'
-                  ORDER BY studname DESC";
-    }
+if (!empty($schoolid)) {
+    $query = "SELECT schoolid, studname, gradelevel, `subject`, a51 
+              FROM tb_answers 
+              WHERE schoolid = $schoolid
+              ORDER BY studname DESC";
 } else {
-    if (!empty($schoolid)) {
-        $query = "SELECT schoolid, studname, gradelevel, `subject`, a51 
-                  FROM tb_answers 
-                  WHERE schoolid != 101010";
-    } else {
-        $query = "SELECT schoolid, studname, gradelevel, `subject`, a51 
-                  FROM tb_answers 
-                  WHERE schoolid != 101010";
-    }
+    $query = "SELECT schoolid, studname, gradelevel, `subject`, a51 
+              FROM tb_answers 
+              WHERE schoolid != 101010";
 }
+
+
+
 
 $result = $conn->query($query);
 
@@ -38,7 +30,7 @@ if (!$result) {
 
 // Set the headers to force download of the CSV file
 header('Content-Type: text/csv');
-header('Content-Disposition: attachment;filename=student_scores.csv');
+header('Content-Disposition: attachment;filename=student_scores_' . $schoolid . '.csv');
 
 // Open the output stream
 $output = fopen('php://output', 'w');
@@ -54,4 +46,4 @@ while ($row = $result->fetch_assoc()) {
 // Close the output stream
 fclose($output);
 exit();
-?>
+?>  
