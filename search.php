@@ -9,13 +9,13 @@ if(isset($_GET['s'])){
     $search = preg_replace('/[^a-zA-Z0-9\s.,]/', '', $_GET['s']);
     if (!empty($schoolid)) {
         $query = "SELECT ID, schoolid, studname, a51, gradelevel, `subject`, created_at 
-                  FROM tb_answers 
+                  FROM tb_answers_cbrat 
                   WHERE schoolid != 101010 AND schoolid = '$schoolid' AND studname LIKE '%$search%' 
                   ORDER BY studname DESC 
                   LIMIT 100";
     } else {
         $query = "SELECT ID, schoolid, studname, a51, gradelevel, `subject`, created_at 
-                  FROM tb_answers 
+                  FROM tb_answers_cbrat 
                   WHERE schoolid != 101010 AND studname LIKE '%$search%' 
                   ORDER BY studname DESC 
                   LIMIT 100";
@@ -23,12 +23,12 @@ if(isset($_GET['s'])){
 } else {
     if (!empty($schoolid)) {
         $query = "SELECT ID, schoolid, studname, a51, gradelevel, `subject`, created_at 
-                  FROM tb_answers 
+                  FROM tb_answers_cbrat 
                   WHERE schoolid != 101010 AND schoolid = '$schoolid' 
                   LIMIT 100";
     } else {
         $query = "SELECT ID, schoolid, studname, a51, gradelevel, `subject`, created_at 
-                  FROM tb_answers 
+                  FROM tb_answers_cbrat 
                   WHERE schoolid != 101010 
                   LIMIT 100";
     }
@@ -160,8 +160,8 @@ if (!empty($_GET['message'])) {
                                 IF (learner.a49 = answer_key.a49, 1, 0) +
                                 IF (learner.a50 = answer_key.a50, 1, 0)
                             ) AS total_correct 
-                            FROM tb_answers AS learner 
-                            JOIN tb_answers AS answer_key 
+                            FROM tb_answers_cbrat AS learner 
+                            JOIN tb_answers_cbrat AS answer_key 
                             ON learner.SUBJECT = answer_key.SUBJECT 
                             AND answer_key.schoolid = 101010 
                             WHERE learner.ID = " . $row['ID'];
@@ -170,7 +170,7 @@ if (!empty($_GET['message'])) {
                                 $score = $rowcheck['total_correct'];
                                 echo "<td>" . $score . "</td>";
                             }
-                            $queryupdate = "UPDATE tb_answers SET a51 = '$score' WHERE ID = " . $row['ID'];
+                            $queryupdate = "UPDATE tb_answers_cbrat SET a51 = '$score' WHERE ID = " . $row['ID'];
                             $resultupdate = $conn->query($queryupdate);
                         }
                         $i++;
