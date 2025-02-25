@@ -10,13 +10,22 @@ $schoolid = isset($_SESSION["schoolid"]) ? $_SESSION["schoolid"] : '';
 
 if (!empty($schoolid)) {
     $query = "SELECT schoolid, studname, gradelevel, `subject`, a51 
-              FROM tb_answers 
+              FROM tb_answers_cbrat
               WHERE schoolid = $schoolid
-              ORDER BY studname DESC";
+              UNION
+              SELECT schoolid, studname, gradelevel, `subject`, a51 
+              FROM tb_answers
+              WHERE schoolid = $schoolid
+              ORDER BY studname ASC";
 } else {
     $query = "SELECT schoolid, studname, gradelevel, `subject`, a51 
-              FROM tb_answers 
-              WHERE schoolid != 101010";
+              FROM tb_answers_cbrat
+              WHERE schoolid != 101010
+              UNION
+              SELECT schoolid, studname, gradelevel, `subject`, a51 
+              FROM tb_answers
+              WHERE schoolid != 101010
+              ORDER BY studname ASC";
 }
 
 
