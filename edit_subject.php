@@ -53,6 +53,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         if (!move_uploaded_file($fileTmpName, $filePath)) {
             die("Error moving uploaded file.");
         }
+    } else {
+        // If no new file is uploaded, keep the existing file path
+        $fileName = $filePath;
     }
 
     // Prepare the update SQL statement
@@ -63,6 +66,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     if ($stmt->execute()) {
         // Redirect to the display page with a success message
         header("Location: index.php?pg=subj&&message=Record updated successfully");
+        exit();
     } else {
         // Redirect to the display page with an error message
         header("Location: index.php?pg=subj&&message=Error updating record: " . $stmt->error);
@@ -86,29 +90,29 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         <h2 class="mb-4">Edit Subject</h2>
         <form action="edit_subject.php?id=<?php echo htmlspecialchars($id); ?>" method="post" enctype="multipart/form-data">
             <div class="form-group">
-            <label for="gradelevel">Grade Level</label>
-            <input type="number" class="form-control" id="gradelevel" name="gradelevel" value="<?php echo htmlspecialchars($gradelevel); ?>" min="1" max="99" required>
+                <label for="gradelevel">Grade Level</label>
+                <input type="number" class="form-control" id="gradelevel" name="gradelevel" value="<?php echo htmlspecialchars($gradelevel); ?>" min="1" max="99" required>
             </div>
             <div class="form-group">
-            <label for="subject">Subject</label>
-            <textarea class="form-control" id="subject" name="subject" rows="3" required><?php echo htmlspecialchars($subject); ?></textarea>
+                <label for="subject">Subject</label>
+                <textarea class="form-control" id="subject" name="subject" rows="3" required><?php echo htmlspecialchars($subject); ?></textarea>
             </div>
             <div class="form-group">
-            <label for="quarter">Quarter</label>
-            <select class="form-control" id="quarter" name="quarter" required>
-                <option value="1" <?php echo $quarter == 1 ? 'selected' : ''; ?>>1</option> 
-                <option value="2" <?php echo $quarter == 2 ? 'selected' : ''; ?>>2</option>
-                <option value="3" <?php echo $quarter == 3 ? 'selected' : ''; ?>>3</option>
-                <option value="4" <?php echo $quarter == 4 ? 'selected' : ''; ?>>4</option>
-            </select>
+                <label for="quarter">Quarter</label>
+                <select class="form-control" id="quarter" name="quarter" required>
+                    <option value="1" <?php echo $quarter == 1 ? 'selected' : ''; ?>>1</option> 
+                    <option value="2" <?php echo $quarter == 2 ? 'selected' : ''; ?>>2</option>
+                    <option value="3" <?php echo $quarter == 3 ? 'selected' : ''; ?>>3</option>
+                    <option value="4" <?php echo $quarter == 4 ? 'selected' : ''; ?>>4</option>
+                </select>
             </div>
             <div class="form-group">
-            <label for="filePath">Current File</label>
-            <input type="text" class="form-control" id="filePath" name="filePath" value="<?php echo htmlspecialchars($filePath); ?>" readonly>
+                <label for="filePath">Current File</label>
+                <input type="text" class="form-control" id="filePath" name="filePath" value="<?php echo htmlspecialchars($filePath); ?>" readonly>
             </div>
             <div class="form-group">
-            <label for="file">Upload New File</label>
-            <input type="file" class="form-control-file" id="file" name="file">
+                <label for="file">Upload New File</label>
+                <input type="file" class="form-control-file" id="file" name="file">
             </div>
             <button type="submit" class="btn btn-primary">Update</button>
             <a href="index.php?pg=subj" class="btn btn-secondary ml-2">Cancel</a>
