@@ -5,10 +5,10 @@ include 'roxcon.php';
 // Fetch data from the subjects table
 if (isset($_GET['s'])) {
     $subjectarea = $conn->real_escape_string($_SESSION["subjectarea"]); // Sanitize session input
-    $query = "SELECT * FROM subjects WHERE `subject` LIKE '%$subjectarea%' AND `quarter` = 3 ORDER BY `file` ASC, gradelevel ASC";
+    $query = "SELECT * FROM subjects WHERE `subject` LIKE '%$subjectarea%' AND (`quarter` = 3 OR `quarter` = 5) ORDER BY `file` ASC, gradelevel ASC";
 } else {
     $subjectarea = $conn->real_escape_string($_SESSION["subjectarea"]); // Sanitize session input
-    $query = "SELECT * FROM subjects WHERE `subject` LIKE '%$subjectarea%' AND `quarter` = 3  ORDER BY `file` ASC, gradelevel ASC";
+    $query = "SELECT * FROM subjects WHERE `subject` LIKE '%$subjectarea%' AND (`quarter` = 3 OR `quarter` = 5)  ORDER BY `file` ASC, gradelevel ASC";
 }
 $result = $conn->query($query);
 
