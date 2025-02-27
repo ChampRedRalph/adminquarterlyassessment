@@ -25,6 +25,7 @@
                     <option value="2">2</option>
                     <option value="3">3</option>
                     <option value="4">4</option>
+                    <option value="5">5 - CBRAT</option>
                 </select>
             </div>
             <button type="submit" class="btn btn-primary">Submit</button>

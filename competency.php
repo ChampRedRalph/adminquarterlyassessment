@@ -2,14 +2,10 @@
 // Include the database connection file
 include 'roxcon.php';
 
-// Check connection and display a message if the connection fails
-if ($conn->connect_error) {
-    die("<div class='alert alert-danger text-center'>Database connection failed: " . $conn->connect_error . "</div>");
-}
 
 // Fetch subjects for the dropdown
 $subjects = [];
-$sql = "SELECT * FROM subjects ORDER BY subject ASC";
+$sql = "SELECT * FROM tb_competencies WHERE subject LIKE '%" . $_SESSION["subjectarea"] . "%' ORDER BY subject ASC";
 $result = $conn->query($sql);
 
 if ($result && $result->num_rows > 0) {
@@ -47,37 +43,32 @@ if ($result && $result->num_rows > 0) {
     <div class="container mt-5">
         <h1 class="text-center mb-4" style="color: #000000;">Search Competencies</h1>
 
-        <div class="alert alert-success text-center">
-            Database connected successfully!
-        </div>
-
         <?php
-        // Initialize variables
-        $selectedSubject = "";
         $results = [];
-
         if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['search'])) {
-            $selectedSubject = $conn->real_escape_string($_POST['file']);
-            $sql = "SELECT *
-                    FROM tb_competencies 
-                    WHERE subject = '$selectedSubject'";
-            $result = $conn->query($sql);
+            $selectedSubject = $_POST['file'];
+            $sql = "SELECT * FROM tb_competencies WHERE subject = ?";
+            $stmt = $conn->prepare($sql);
+            $stmt->bind_param("s", $selectedSubject);
+            $stmt->execute();
+            $result = $stmt->get_result();
 
-            if ($result->num_rows > 0) {
+            if ($result && $result->num_rows > 0) {
                 while ($row = $result->fetch_assoc()) {
                     $results[] = $row;
                 }
             }
+            $stmt->close();
         }
         ?>
 
          <form method="POST" class="mb-4">
             <div class="input-group">
                 <select name="file" class="form-select" required>
-                    <option value="" disabled selected>Select a subject and grade level</option>
+                    <option value="" disabled selected>Select a subject</option>
                     <?php foreach ($subjects as $subject): ?>
-                        <option value="<?php echo htmlspecialchars($subject['file']); ?>">
-                            <?php echo htmlspecialchars($subject['subject'] . " " . $subject['gradelevel']); ?>
+                        <option value="<?php echo htmlspecialchars($subject['subject']); ?>">
+                            <?php echo htmlspecialchars(substr($subject['subject'], 0, -4)); ?>
                         </option>
                     <?php endforeach; ?>
                 </select>
@@ -103,11 +94,11 @@ if ($result && $result->num_rows > 0) {
                             </tr>
                             <tr>
                                 <td>Subject</td>
-                                <td><?php echo htmlspecialchars($row['subject']); ?></td>
+                                <td><?php echo htmlspecialchars(substr($row['subject'], 0, -4)); ?></td>
                             </tr>
                             <?php for ($i = 1; $i <= 50; $i++): ?>
                                 <tr>
-                                    <td>C<?php echo $i; ?></td>
+                                    <td>Item: <?php echo $i; ?></td>
                                     <td><?php echo htmlspecialchars($row["c$i"]); ?></td>
                                 </tr>
                             <?php endfor; ?>

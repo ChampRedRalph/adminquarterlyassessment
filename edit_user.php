@@ -3,7 +3,7 @@
 include 'roxcon.php'; // Adjust the path to your database connection file
 
 // Define variables and initialize with empty values
-$username = $email = $password = $office = $subjectarea = "";
+$username = $email = $password = $office = $subjectarea = $schoolid = "";
 $username_err = $email_err = $password_err = "";
 
 // Check if the user ID exists
@@ -24,6 +24,7 @@ if (isset($_GET["id"]) && !empty(trim($_GET["id"]))) {
                 $email = $row["email"];
                 $office = $row["office"];
                 $subjectarea = $row["subjectarea"];
+                $schoolid = $row["schoolid"];
             } else {
                 header("location: error.php");
                 exit();
@@ -44,6 +45,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $email = trim($_POST["email"]);
     $office = trim($_POST["office"]);
     $subjectarea = trim($_POST["subjectarea"]);
+    $schoolid = trim($_POST["schoolid"]);
 
     if (!empty(trim($_POST["password"]))) {
         $password = password_hash(trim($_POST["password"]), PASSWORD_DEFAULT);
@@ -51,17 +53,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     if (empty($username_err) && empty($email_err) && empty($password_err)) {
         if (!empty($password)) {
-            $sql = "UPDATE users SET username = ?, email = ?, password = ?, office = ?, subjectarea = ?, updated_at = ? WHERE id = ?";
+            $sql = "UPDATE users SET username = ?, email = ?, password = ?, office = ?, subjectarea = ?, schoolid = ?, updated_at = ? WHERE id = ?";
         } else {
-            $sql = "UPDATE users SET username = ?, email = ?, office = ?, subjectarea = ?, updated_at = ? WHERE id = ?";
+            $sql = "UPDATE users SET username = ?, email = ?, office = ?, subjectarea = ?, schoolid = ?, updated_at = ? WHERE id = ?";
         }
 
         if ($stmt = $conn->prepare($sql)) {
             $param_updated_at = date("Y-m-d H:i:s");
             if (!empty($password)) {
-                $stmt->bind_param("ssssssi", $username, $email, $password, $office, $subjectarea, $param_updated_at, $id);
+                $stmt->bind_param("sssssisi", $username, $email, $password, $office, $subjectarea, $schoolid, $param_updated_at, $id);
             } else {
-                $stmt->bind_param("sssssi", $username, $email, $office, $subjectarea, $param_updated_at, $id);
+                $stmt->bind_param("ssssisi", $username, $email, $office, $subjectarea, $schoolid, $param_updated_at, $id);
             }
 
             if ($stmt->execute()) {
@@ -90,11 +92,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <form action="edit_user.php?id=<?php echo htmlspecialchars($id); ?>" method="post">
             <div class="form-group">
                 <label>Username</label>
-                <input type="text" name="username" class="form-control" value="<?php echo $username; ?>">
+                <input type="text" name="username" class="form-control" value="<?php echo htmlspecialchars($username); ?>">
             </div>
             <div class="form-group">
                 <label>Email</label>
-                <input type="email" name="email" class="form-control" value="<?php echo $email; ?>">
+                <input type="email" name="email" class="form-control" value="<?php echo htmlspecialchars($email); ?>">
             </div>
             <div class="form-group">
                 <label>Office</label>
@@ -112,7 +114,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <select name="subjectarea" class="form-control">
                 <?php
                     // Add a blank option
-                 echo '<option value=""' . ($subjectarea === '' ? ' selected' : '') . '> </option>';
+                    echo '<option value=""' . ($subjectarea === '' ? ' selected' : '') . '> </option>';
 
                     $subject_query = "SELECT DISTINCT subject FROM subjects";
                     if ($subject_result = $conn->query($subject_query)) {
@@ -123,6 +125,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     }
                 ?>
                 </select>
+            </div>
+            <div class="form-group">
+                <label>School ID</label>
+                <input type="text" name="schoolid" class="form-control" value="<?php echo htmlspecialchars($schoolid); ?>">
             </div>
             <div class="form-group">
                 <label>Password (Leave blank if not changing)</label>
