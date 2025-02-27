@@ -114,7 +114,7 @@ $username = $_SESSION['username'];
                         <a class="nav-link" href="index.php?pg=subj">Display Subjects</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="index.php?pg=comp">Display Competences</a>
+                        <a class="nav-link" href="index.php?pg=comp">Display Competencies</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="index.php?pg=ans">Display Answers</a>
