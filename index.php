@@ -116,6 +116,9 @@ $username = $_SESSION['username'];
                     <li class="nav-item">
                         <a class="nav-link" href="index.php?pg=comp">Display Competences</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.php?pg=ans">Display Answers</a>
+                    </li>
                 <?php endif; ?>
                 <li class="nav-item">
                         <a class="nav-link" href="index.php?pg=anal">Display 2nd Qtr Analysis</a>
@@ -447,6 +450,9 @@ $username = $_SESSION['username'];
                                         break;
                                     case 'subcomp':
                                         include 'submit_competency.php';
+                                        break;
+                                    case 'ans':
+                                        include 'answers.php';
                                         break;
                                     default:
                                         include 'dashboard.php';
