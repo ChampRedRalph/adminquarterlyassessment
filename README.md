@@ -2,6 +2,8 @@
 
 The Regional Unified Quarterly Assessment System is a web-based application designed to manage and evaluate the performance of schools and students within a specific region. This system allows administrators to upload, edit, and review assessment data, ensuring efficient and accurate tracking of educational progress.
 
+**Note: This project is a government project and is not intended for public use. Access to this repository is restricted to authorized personnel only.**
+
 ## Table of Contents
 
 - [Features](#features)
@@ -64,3 +66,5 @@ adminquarterlyassessment/
 ├── submit_answers.php
 ├── roxcon.php
 ├── README.md
+
+This `README.md` provides an overview of the system, installation instructions, usage guidelines, file structure, and other relevant information. Adjust the content as needed to fit your specific project details.
