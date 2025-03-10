@@ -32,11 +32,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $stmt_cbrat->close();
 
     // Redirect back to the dashboard with a success message
-    header("Location: dashboard.php?message=Exam settings updated successfully");
+    header("Location: index.php?message=Exam settings updated successfully");
     exit();
 } else {
     // If the form was not submitted, redirect back to the dashboard
-    header("Location: dashboard.php");
+    header("Location: index.php");
     exit();
 }
 
