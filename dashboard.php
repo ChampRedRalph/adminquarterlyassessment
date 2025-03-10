@@ -202,66 +202,70 @@ if ($result_unique_schools->num_rows > 0) {
         </div>   
             <div class="row">
                 <!-- Exam Settings Card -->
-                <div class="col-xl-6 col-md-6 mb-4">
-                    <div class="card border-left-secondary shadow h-100 py-2">
-                        <div class="card-body">
-                            <div class="row no-gutters align-items-center">
-                                <div class="col mr-2">
-                                    <div class="text-xs font-weight-bold text-secondary text-uppercase mb-1">
-                                                Exam Settings</div>
-                                            <form action="save_exam_settings.php" method="post">
-                                                <div class="form-group">
-                                                    <label for="ruqa_exam" class="h5 font-weight-bold text-gray-800">RUQA Exam</label>
-                                                    <?php
-                                                    // Query to get the status of RUQA Exam from tb_settings where id = 2
-                                                    $sql_ruqa_status = "SELECT status FROM tb_settings WHERE id = 2";
-                                                    $result_ruqa_status = $conn->query($sql_ruqa_status);
+                <?php if ($_SESSION["office"] == "Region" && $_SESSION["subjectarea"] == null): ?>
+                                <div class="col-xl-6 col-md-6 mb-4">
+                                    <div class="card border-left-secondary shadow h-100 py-2">
+                                        <div class="card-body">
+                                            <div class="row no-gutters align-items-center">
+                                                <div class="col mr-2">
+                                                    <div class="text-xs font-weight-bold text-secondary text-uppercase mb-1">
+                                                                Exam Settings</div>
+                                                            <form action="save_exam_settings.php" method="post">
+                                                                <div class="form-group">
+                                                                    <label for="ruqa_exam" class="h5 font-weight-bold text-gray-800">RUQA Exam</label>
+                                                                    <a href="https://ruqa.deped10.com" target="_blank">Visit RUQA Exam</a>
+                                                                    <?php
+                                                                    // Query to get the status of RUQA Exam from tb_settings where id = 2
+                                                                    $sql_ruqa_status = "SELECT status FROM tb_settings WHERE id = 2";
+                                                                    $result_ruqa_status = $conn->query($sql_ruqa_status);
 
-                                                    $ruqa_exam_checked = "";
-                                                    if ($result_ruqa_status->num_rows > 0) {
-                                                        $row_ruqa_status = $result_ruqa_status->fetch_assoc();
-                                                        if ($row_ruqa_status["status"] == 1) {
-                                                            $ruqa_exam_checked = "checked";
-                                                        }
-                                                    }
-                                                    ?>
-                                                    <div class="custom-control custom-switch custom-control-lg">
-                                                        <input type="checkbox" class="custom-control-input" id="ruqa_exam" name="ruqa_exam" <?php echo $ruqa_exam_checked; ?>>
-                                                        <label class="custom-control-label" for="ruqa_exam"></label>
+                                                                    $ruqa_exam_checked = "";
+                                                                    if ($result_ruqa_status->num_rows > 0) {
+                                                                        $row_ruqa_status = $result_ruqa_status->fetch_assoc();
+                                                                        if ($row_ruqa_status["status"] == 1) {
+                                                                            $ruqa_exam_checked = "checked";
+                                                                        }
+                                                                    }
+                                                                    ?>
+                                                                    <div class="custom-control custom-switch custom-control-lg">
+                                                                        <input type="checkbox" class="custom-control-input" id="ruqa_exam" name="ruqa_exam" <?php echo $ruqa_exam_checked; ?>>
+                                                                        <label class="custom-control-label" for="ruqa_exam"></label>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <label for="cbrat_exam" class="h5 font-weight-bold text-gray-800">CBRAT Exam</label>
+                                                                    <a href="https://cbrat.deped10.com" target="_blank">Visit CBRAT Exam</a>
+                                                                    <?php
+                                                                    // Query to get the status of CBRAT Exam from tb_settings where id = 1
+                                                                    $sql_cbrat_status = "SELECT status FROM tb_settings WHERE id = 1";
+                                                                    $result_cbrat_status = $conn->query($sql_cbrat_status);
+
+                                                                    $cbrat_exam_checked = "";
+                                                                    if ($result_cbrat_status->num_rows > 0) {
+                                                                        $row_cbrat_status = $result_cbrat_status->fetch_assoc();
+                                                                        if ($row_cbrat_status["status"] == 1) {
+                                                                            $cbrat_exam_checked = "checked";
+                                                                        }
+                                                                    }
+                                                                    ?>
+                                                                    <div class="custom-control custom-switch custom-control-lg">
+                                                                        <input type="checkbox" class="custom-control-input" id="cbrat_exam" name="cbrat_exam" <?php echo $cbrat_exam_checked; ?>>
+                                                                        <label class="custom-control-label" for="cbrat_exam"></label>
+                                                                    </div>
+                                                                </div>
+                                                                <button type="submit" class="btn btn-secondary">Save</button>
+                                                            </form>
+                                                    </div>
                                                     </div>
                                                 </div>
-                                                <div class="form-group">
-                                                    <label for="cbrat_exam" class="h5 font-weight-bold text-gray-800">CBRAT Exam</label>
-                                                    <?php
-                                                    // Query to get the status of CBRAT Exam from tb_settings where id = 1
-                                                    $sql_cbrat_status = "SELECT status FROM tb_settings WHERE id = 1";
-                                                    $result_cbrat_status = $conn->query($sql_cbrat_status);
-
-                                                    $cbrat_exam_checked = "";
-                                                    if ($result_cbrat_status->num_rows > 0) {
-                                                        $row_cbrat_status = $result_cbrat_status->fetch_assoc();
-                                                        if ($row_cbrat_status["status"] == 1) {
-                                                            $cbrat_exam_checked = "checked";
-                                                        }
-                                                    }
-                                                    ?>
-                                                    <div class="custom-control custom-switch custom-control-lg">
-                                                        <input type="checkbox" class="custom-control-input" id="cbrat_exam" name="cbrat_exam" <?php echo $cbrat_exam_checked; ?>>
-                                                        <label class="custom-control-label" for="cbrat_exam"></label>
-                                                    </div>
+                                                <div class="col-auto">
+                                                    <i class="fas fa-cogs fa-2x text-gray-300"></i>
                                                 </div>
-                                                <button type="submit" class="btn btn-secondary">Save</button>
-                                            </form>
-                                    </div>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="col-auto">
-                                    <i class="fas fa-cogs fa-2x text-gray-300"></i>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                <?php endif; ?>
             </div>
 
 </div>
