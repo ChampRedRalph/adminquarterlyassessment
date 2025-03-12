@@ -5,10 +5,10 @@ include 'roxcon.php';
 // Fetch data from the subjects table
 if (isset($_GET['s'])) {
     $subjectarea = $conn->real_escape_string($_SESSION["subjectarea"]); // Sanitize session input
-    $query = "SELECT * FROM subjects WHERE `subject` LIKE '%$subjectarea%' AND (`quarter` = 3 OR `quarter` = 5) ORDER BY `file` ASC, gradelevel ASC";
+    $query = "SELECT * FROM subjects WHERE `subject` LIKE '%$subjectarea%' AND (`quarter` = 3 OR `quarter` = 5) ORDER BY `file` ASC, 'quarter' DESC, gradelevel ASC";
 } else {
     $subjectarea = $conn->real_escape_string($_SESSION["subjectarea"]); // Sanitize session input
-    $query = "SELECT * FROM subjects WHERE `subject` LIKE '%$subjectarea%' AND (`quarter` = 3 OR `quarter` = 5)  ORDER BY `file` ASC, gradelevel ASC";
+    $query = "SELECT * FROM subjects WHERE `subject` LIKE '%$subjectarea%' AND (`quarter` = 3 OR `quarter` = 5)  ORDER BY `file` ASC, 'quarter' DESC, gradelevel ASC";
 }
 $result = $conn->query($query);
 
@@ -67,6 +67,7 @@ $conn->close();
                 <tr>
                     <th>#</th>
                     <th class="text-center">Grade Level</th>
+                    <th class="text-center">Quarter</th>
                     <th class="text-center">Subject</th>
                     <th class="text-center">Analysis</th>
                     <th class="text-center">File</th>
@@ -79,6 +80,7 @@ $conn->close();
                         <tr>
                             <td><?php echo ++$row_number; ?></td>
                             <td  class="text-center"><?php echo htmlspecialchars($row['gradelevel']); ?></td>
+                            <td><?php echo htmlspecialchars($row['quarter']); ?></td>
                             <td><?php echo htmlspecialchars($row['subject']); ?></td>
                             <td>
                                 <!-- <a href="<?php echo "http://122.3.185.245:8081/RUQAanalysis/competencyperdivision.php?subject=" 
@@ -118,7 +120,7 @@ $conn->close();
                     <?php endwhile; ?>
                 <?php else: ?>
                     <tr>
-                        <td colspan="5" class="text-center">No records found</td>
+                        <td colspan="6" class="text-center">No records found</td>
                     </tr>
                 <?php endif; ?>
             </tbody>

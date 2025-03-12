@@ -6,7 +6,7 @@ include 'roxcon.php'; // Change this to the correct path of your connection file
 session_start();
 
 // Query to count the number of rows in the "answers" table
-$sql = "SELECT COUNT(*) as total_answers FROM tb_answers";
+$sql = "SELECT COUNT(*) as total_answers FROM tb_answers_RUQAvalidation";
 $result = $conn->query($sql);
 
 if ($result->num_rows > 0) {
@@ -42,7 +42,7 @@ if ($result_subjects_null->num_rows > 0) {
 }
 
 // Query to count the number of unique schoolid in the "tb_answers" table
-$sql_unique_schools = "SELECT COUNT(DISTINCT schoolid) as total_unique_schools FROM tb_answers";
+$sql_unique_schools = "SELECT COUNT(DISTINCT schoolid) as total_unique_schools FROM tb_answers_RUQAvalidation";
 $result_unique_schools = $conn->query($sql_unique_schools);
 
 if ($result_unique_schools->num_rows > 0) {
