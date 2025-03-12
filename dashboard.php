@@ -253,6 +253,27 @@ if ($result_unique_schools->num_rows > 0) {
                                                                         <label class="custom-control-label" for="cbrat_exam"></label>
                                                                     </div>
                                                                 </div>
+                                                                <div class="form-group">
+                                                                    <label for="cbrat_exam" class="h5 font-weight-bold text-gray-800">RUQA Validation Exam</label>
+                                                                    <a href="https://ruqavalidation.deped10.com" target="_blank">Visit RUQA Validation Exam</a>
+                                                                    <?php
+                                                                    // Query to get the status of CBRAT Exam from tb_settings where id = 3
+                                                                    $sql_cbrat_status = "SELECT status FROM tb_settings WHERE id = 3";
+                                                                    $result_cbrat_status = $conn->query($sql_cbrat_status);
+
+                                                                    $cbrat_exam_checked = "";
+                                                                    if ($result_cbrat_status->num_rows > 0) {
+                                                                        $row_cbrat_status = $result_cbrat_status->fetch_assoc();
+                                                                        if ($row_cbrat_status["status"] == 1) {
+                                                                            $cbrat_exam_checked = "checked";
+                                                                        }
+                                                                    }
+                                                                    ?>
+                                                                    <div class="custom-control custom-switch custom-control-lg">
+                                                                        <input type="checkbox" class="custom-control-input" id="ruqaval_exam" name="ruqaval_exam" <?php echo $cbrat_exam_checked; ?>>
+                                                                        <label class="custom-control-label" for="ruqaval_exam"></label>
+                                                                    </div>
+                                                                </div>
                                                                 <button type="submit" class="btn btn-secondary">Save</button>
                                                             </form>
                                                     </div>

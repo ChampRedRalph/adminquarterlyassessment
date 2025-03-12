@@ -6,11 +6,11 @@ include 'roxcon.php';
 
 if(isset($_GET['s'])){
     $search = preg_replace('/[^a-zA-Z0-9\s.,]/', '', $_GET['s']);
-    // $query = "SELECT ID,schoolid, studname,a51, gradelevel, `subject`, created_at  FROM tb_answers  where schoolid!= 101010 and (`schoolid` like '%$search%' or `studname` like '%$search%') limit 20";
-    $query = "SELECT ID,schoolid, studname,a51, gradelevel, `subject`, created_at  FROM tb_answers_cbrat  where schoolid!= 101010 and (`schoolid` like '%$search%' or `studname` like '%$search%') limit 20";
+    // $query = "SELECT ID,schoolid, studname,a51, gradelevel, `subject`, created_at  FROM tb_answers_RUQAvalidation  where schoolid!= 101010 and (`schoolid` like '%$search%' or `studname` like '%$search%') limit 20";
+    $query = "SELECT ID,schoolid, studname,a51, gradelevel, `subject`, created_at  FROM tb_answers_RUQAvalidation  where schoolid!= 101010 and (`schoolid` like '%$search%' or `studname` like '%$search%') limit 20";
 }else{
-    // $query = "SELECT ID,schoolid, studname,a51,gradelevel, `subject`, created_at  FROM tb_answers WHERE 1=0";
-    $query = "SELECT ID,schoolid, studname,a51,gradelevel, `subject`, created_at  FROM tb_answers_cbrat WHERE 1=0";
+    // $query = "SELECT ID,schoolid, studname,a51,gradelevel, `subject`, created_at  FROM tb_answers_RUQAvalidation WHERE 1=0";
+    $query = "SELECT ID,schoolid, studname,a51,gradelevel, `subject`, created_at  FROM tb_answers_RUQAvalidation WHERE 1=0";
 }
 $result = $conn->query($query);
 

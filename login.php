@@ -176,6 +176,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                     </div>
                                     <br>
                                     <div class="text-center">
+                                        <a class="btn btn-secondary btn-user btn-block" href="http://ruqavalidation.deped10.com" target="_blank">RUQA Validation Exam Link</a>
+                                    </div>
+                                    <br>
+                                    <div class="text-center">
                                         <a class="btn btn-info btn-user btn-block" href="public_search.php" target="_blank">Search Student</a>
                                     </div>
                                     <hr>
