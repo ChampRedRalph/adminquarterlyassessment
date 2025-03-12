@@ -104,6 +104,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     <option value="2" <?php echo $quarter == 2 ? 'selected' : ''; ?>>2</option>
                     <option value="3" <?php echo $quarter == 3 ? 'selected' : ''; ?>>3</option>
                     <option value="4" <?php echo $quarter == 4 ? 'selected' : ''; ?>>4</option>
+                    <option value="5" <?php echo $quarter == 5 ? 'selected' : ''; ?>>5</option>
                 </select>
             </div>
             <div class="form-group">
