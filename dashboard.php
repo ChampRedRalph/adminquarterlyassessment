@@ -254,23 +254,23 @@ if ($result_unique_schools->num_rows > 0) {
                                                                     </div>
                                                                 </div>
                                                                 <div class="form-group">
-                                                                    <label for="cbrat_exam" class="h5 font-weight-bold text-gray-800">RUQA Validation Exam</label>
+                                                                    <label for="ruqaval_exam" class="h5 font-weight-bold text-gray-800">RUQA Validation Exam</label>
                                                                     <a href="https://ruqavalidation.deped10.com" target="_blank">Visit RUQA Validation Exam</a>
                                                                     <?php
-                                                                    // Query to get the status of CBRAT Exam from tb_settings where id = 3
-                                                                    $sql_cbrat_status = "SELECT status FROM tb_settings WHERE id = 3";
-                                                                    $result_cbrat_status = $conn->query($sql_cbrat_status);
+                                                                    // Query to get the status of RUQA Verification Exam from tb_settings where id = 3
+                                                                    $sql_ruqaval_status = "SELECT status FROM tb_settings WHERE id = 3";
+                                                                    $result_ruqaval_status = $conn->query($sql_ruqaval_status);
 
-                                                                    $cbrat_exam_checked = "";
-                                                                    if ($result_cbrat_status->num_rows > 0) {
-                                                                        $row_cbrat_status = $result_cbrat_status->fetch_assoc();
-                                                                        if ($row_cbrat_status["status"] == 1) {
-                                                                            $cbrat_exam_checked = "checked";
+                                                                    $ruqaval_exam_checked = "";
+                                                                    if ($result_ruqaval_status->num_rows > 0) {
+                                                                        $row_ruqaval_status = $result_ruqaval_status->fetch_assoc();
+                                                                        if ($row_ruqaval_status["status"] == 1) {
+                                                                            $ruqaval_exam_checked = "checked";
                                                                         }
                                                                     }
                                                                     ?>
                                                                     <div class="custom-control custom-switch custom-control-lg">
-                                                                        <input type="checkbox" class="custom-control-input" id="ruqaval_exam" name="ruqaval_exam" <?php echo $cbrat_exam_checked; ?>>
+                                                                        <input type="checkbox" class="custom-control-input" id="ruqaval_exam" name="ruqaval_exam" <?php echo $ruqaval_exam_checked; ?>>
                                                                         <label class="custom-control-label" for="ruqaval_exam"></label>
                                                                     </div>
                                                                 </div>

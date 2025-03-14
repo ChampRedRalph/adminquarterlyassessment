@@ -12,6 +12,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // Get the status of the CBRAT exam from the form
     $cbrat_exam_status = isset($_POST['cbrat_exam']) ? 1 : 0;
+    
+    // Get the status of the CBRAT exam from the form
+    $ruqaval_exam_status = isset($_POST['ruqaval_exam']) ? 1 : 0;
 
     // Update the status of the RUQA exam in the database
     $sql_update_ruqa = "UPDATE tb_settings SET status = ? WHERE id = 2";
@@ -31,12 +34,22 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
     $stmt_cbrat->close();
 
+    // Update the status of the RUQAVAL exam in the database
+    $sql_update_ruqaval = "UPDATE tb_settings SET status = ? WHERE id = 3";
+    $stmt_ruqaval = $conn->prepare($sql_update_cbrat);
+    $stmt_ruqaval->bind_param("i", $ruqaval_exam_status);
+    if (!$stmt_ruqaval->execute()) {
+        die("Error updating CBRAT exam status: " . $stmt_ruqaval->error);
+    }
+    $stmt_ruqaval->close();
+
+
     // Redirect back to the dashboard with a success message
     header("Location: index.php?message=Exam settings updated successfully");
     exit();
 } else {
     // If the form was not submitted, redirect back to the dashboard
-    header("Location: index.php");
+    header("Location: dashboard.php");
     exit();
 }
 
